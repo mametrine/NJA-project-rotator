@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="js/gsap.min.js"></script>
+    <script src="js/Observer.min.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="project-details">
+        <div id="project-title"></div>
+        <button id="more-button" class="project-button" type="button">
+          More details
+        </button>
+      </div>
+      <div id="jog-controls">
+        <svg
+          viewBox="0 0 70 70"
+          width="70"
+          height="70"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g>
+            <rect fill="white" stroke="none" width="70" height="70" />
+            <path
+              id="back"
+              class="control-button"
+              d="M 15.057812,59.540857 V 10.45909 a 5.7735027,5.7735027 150 0 1 8.660254,-5 l 42.506057,24.540883 a 5.7735027,5.7735027 90 0 1 0,10 L 23.718066,64.540857 a 5.7735026,5.7735026 30 0 1 -8.660254,-5 z"
+              transform="translate(7.0843432) rotate(180)"
+            />
+          </g>
+        </svg>
+        <div id="control-button-spacer"></div>
+        <svg
+          viewBox="0 0 70 70"
+          width="70"
+          height="70"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g>
+            <rect fill="white" stroke="none" width="70" height="70" />
+            <path
+              id="next"
+              class="control-button"
+              d="M 15.057812,59.540857 V 10.45909 a 5.7735027,5.7735027 150 0 1 8.660254,-5 l 42.506057,24.540883 a 5.7735027,5.7735027 90 0 1 0,10 L 23.718066,64.540857 a 5.7735026,5.7735026 30 0 1 -8.660254,-5 z"
+              transform="translate(-7.0843432)"
+            />
+          </g>
+        </svg>
+      </div>
+      <svg
+        id="roundels"
+        viewBox="0 0 1096 1096"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle class="track" cx="50%" cy="50%" r="500" />
+        <circle class="track" cx="50%" cy="50%" r="480" />
+        <g transform="translate(548 548)">
+          <g id="c1" data-project-roundel>
+            <circle class="project-roundel" r="54" data-highlighted="0" />
+            <text class="project-date" text-anchor="middle" y="-9">1 NOV</text>
+            <text class="project-year" text-anchor="middle" y="21">2023</text>
+          </g>
+          <g id="c2" data-project-roundel>
+            <circle class="project-roundel" r="54" data-highlighted="0" />
+            <text class="project-date" text-anchor="middle" y="-9">2 NOV</text>
+            <text class="project-year" text-anchor="middle" y="21">2023</text>
+          </g>
+          <g id="c3" data-project-roundel>
+            <circle class="project-roundel" r="54" data-highlighted="0" />
+            <text class="project-date" text-anchor="middle" y="-9">3 NOV</text>
+            <text class="project-year" text-anchor="middle" y="21">2023</text>
+          </g>
+          <g id="c4" data-project-roundel>
+            <circle class="project-roundel" r="54" data-highlighted="0" />
+            <text class="project-date" text-anchor="middle" y="-9">4 NOV</text>
+            <text class="project-year" text-anchor="middle" y="21">2023</text>
+          </g>
+          <g id="c5" data-project-roundel>
+            <circle class="project-roundel" r="54" data-highlighted="0" />
+            <text class="project-date" text-anchor="middle" y="-9">5 NOV</text>
+            <text class="project-year" text-anchor="middle" y="21">2023</text>
+          </g>
+          <g id="c6" data-project-roundel>
+            <circle class="project-roundel" r="54" data-highlighted="0" />
+            <text class="project-date" text-anchor="middle" y="-9">6 NOV</text>
+            <text class="project-year" text-anchor="middle" y="21">2023</text>
+          </g>
+          <g id="c7" data-project-roundel>
+            <circle class="project-roundel" r="54" data-highlighted="0" />
+            <text class="project-date" text-anchor="middle" y="-9">7 NOV</text>
+            <text class="project-year" text-anchor="middle" y="21">2023</text>
+          </g>
+          <g id="c8" data-project-roundel>
+            <circle class="project-roundel" r="54" data-highlighted="0" />
+            <text class="project-date" text-anchor="middle" y="-9">8 NOV</text>
+            <text class="project-year" text-anchor="middle" y="21">2023</text>
+          </g>
+        </g>
+      </svg>
+      <div class="fade-overlay"></div>
+    </div>
+    <div id="details-modal" class="modal modal-hidden">
+      <div class="dialog">
+        <svg
+          id="close-icon"
+          viewBox="0 0 29.377441 29.377411"
+          width="29.377441"
+          height="29.377411"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m 26.763271,1.4690132 c -1.958683,-1.95868427 -5.112383,-1.95868427 -7.071067,0 L 14.115452,7.0457647 8.5400802,1.4703935 c -1.958683,-1.95868357 -5.1123838,-1.95868357 -7.0710675,0 -1.9586836,1.9586837 -1.9586836,5.1123842 0,7.0710682 l 5.5753715,5.5753713 -5.5753715,5.575372 c -1.9586836,1.958683 -1.9586836,5.112384 0,7.071067 1.9586837,1.958684 5.1123845,1.958684 7.0710675,0 l 5.5753718,-5.575371 5.575371,5.575371 c 1.958684,1.958684 5.112385,1.958684 7.071068,0 1.958684,-1.958683 1.958684,-5.112384 0,-7.071067 L 21.18652,14.116833 26.763271,8.5400807 c 1.958685,-1.958684 1.958684,-5.1123838 0,-7.0710675 z"
+          />
+        </svg>
+        <div id="column-container">
+          <div id="left">
+            <img class="image-clip-path-md" src="img/example-md.jpg" alt="" />
+          </div>
+          <div id="middle">
+            <img class="image-clip-path-lg" src="img/example-lg.jpg" alt="" />
+            <img class="image-clip-path-sm" src="img/example-sm.jpg" alt="" />
+          </div>
+          <div id="right">
+            <div id="modal-title">Project Title</div>
+            <div id="modal-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/project-rotator.js"></script>
+  </body>
+</html>
+
+<!-- Minified plugin files register themselves -->
+<!-- Don't use inline css transform on the same target as gsap -->
